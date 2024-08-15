@@ -11,6 +11,8 @@ public:
 private:
   Config _config;
 
+  void openAltScreen();
+  void closeAltScreen();
   void clearScreen();
   void printFrame();
 };
