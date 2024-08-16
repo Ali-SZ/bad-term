@@ -6,9 +6,9 @@
 
 class Config {
 public:
-  void findScreenSize();
+  Size findScreenSize();
 
-  Size screenSize();
+  FilterConfig filterConfig;
 
 private:
   Size _screenSize;

@@ -5,7 +5,6 @@
 
 int main() {
   Config config;
-  config.findScreenSize();
 
   Scene scene(config);
   scene.start();

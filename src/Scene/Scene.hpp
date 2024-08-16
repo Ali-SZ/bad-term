@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Config/Config.hpp"
+#include "filter.hpp"
 
 class Scene {
 public:
@@ -14,5 +15,4 @@ private:
   void openAltScreen();
   void closeAltScreen();
   void clearScreen();
-  void printFrame();
 };
