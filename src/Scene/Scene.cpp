@@ -21,7 +21,7 @@ void Scene::start() {
     if (!cap.read(frame)) {
       break;
     }
-
+    clearScreen();
     std::cout << filter.filterFrame(frame);
     usleep(fps * 1000);
   }
