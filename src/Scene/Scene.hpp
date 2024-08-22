@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../Config/Config.hpp"
-#include "filter.hpp"
 
 class Scene {
 public:

@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Config/Config.hpp"
 #include "Scene/Scene.hpp"
 

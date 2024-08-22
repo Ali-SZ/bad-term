@@ -3,6 +3,12 @@
 #include <pwd.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <thread>
+
+Config::Config() {
+
+  systemConfig.core = findCoreNum();
+}
 
 Size Config::findScreenSize() {
   struct winsize w;
@@ -20,4 +26,8 @@ std::string Config::findHomeDir() {
 
 std::string Config::findConfigDir() {
   return findHomeDir() + "/.config/bad-term";
+}
+
+uint8_t Config::findCoreNum() {
+  return std::thread::hardware_concurrency();
 }

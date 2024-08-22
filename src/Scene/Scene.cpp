@@ -2,16 +2,17 @@
 
 #include <iostream>
 #include <stdlib.h>
-#include <string>
 #include <unistd.h>
 
 #include <opencv2/opencv.hpp>
+
+#include "filter.hpp"
 
 Scene::Scene(Config conf) { _config = conf; }
 
 void Scene::start() {
   cv::VideoCapture cap("assets/bad_apple.mp4");
-  uint32_t fps = 1000 / cap.get(cv::CAP_PROP_FPS);
+  uint32_t waitTime = 1000 / cap.get(cv::CAP_PROP_FPS);
   Filter filter(&_config);
 
   openAltScreen();
@@ -23,7 +24,7 @@ void Scene::start() {
     }
     clearScreen();
     std::cout << filter.filterFrame(frame);
-    usleep(fps * 1000);
+    usleep(waitTime * 1000);
   }
 
   closeAltScreen();

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <algorithm>
 #include <opencv2/opencv.hpp>
 #include <string>
 #include <vector>
@@ -16,9 +15,10 @@ public:
 private:
   Config *_conf;
   std::string _outputBuffer;
-  std::vector<char> charMap;
+  std::vector<char> _charMap;
 
   void reverseChars();
   cv::Mat prepareFrame(cv::Mat &frame, Size &size);
-  void matToAscii(cv::Mat &frame, Size &size);
+  void matToAscii(cv::Mat &frame);
+  std::string submatToAsciiGray(cv::Mat frame);
 };
