@@ -11,8 +11,11 @@ project(${PROJECT_NAME})
 file(GLOB_RECURSE SRC_FILES "src/*.cpp")
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 
-include_directories(${OpenCV_INCLUDE_DIRS})
-
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+target_include_directories(${PROJECT_NAME} PRIVATE 
+    ${OpenCV_INCLUDE_DIRS}
+)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    ${OpenCV_LIBS}
+)
