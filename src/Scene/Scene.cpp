@@ -1,37 +1,67 @@
 #include "Scene.hpp"
-
-#include <iostream>
-#include <stdlib.h>
-#include <unistd.h>
+#include "filter.hpp"
 
 #include <opencv2/opencv.hpp>
 
-#include "filter.hpp"
+#include <cstdio>
+#include <ncurses.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-Scene::Scene(Config conf) { _config = conf; }
+Scene::Scene(Config &conf) {
+  _config = conf;
+  _filter = Filter(&_config);
+}
 
 void Scene::start() {
   cv::VideoCapture cap("assets/bad_apple.mp4");
   uint32_t waitTime = 1000 / cap.get(cv::CAP_PROP_FPS);
-  Filter filter(&_config);
 
   openAltScreen();
+  _running = true;
 
-  while (true) {
+  while (_running) {
+    handleInput();
+
     cv::Mat frame;
     if (!cap.read(frame)) {
       break;
     }
-    clearScreen();
-    std::cout << filter.filterFrame(frame);
+    printOnScreen(_filter.filterFrame(frame).c_str());
     usleep(waitTime * 1000);
+    clearScreen();
   }
 
   closeAltScreen();
 }
 
-void Scene::openAltScreen() { system("echo -e \"\0337\033[?47h\""); }
+void Scene::openAltScreen() {
+  initscr();
+  cbreak();
+  curs_set(0);
+  noecho();
+  nodelay(stdscr, TRUE);
+  keypad(stdscr, true);
+}
 
-void Scene::closeAltScreen() { system("echo -e \"\033[2J\033[?47l\0338\""); }
+void Scene::closeAltScreen() { endwin(); }
 
-void Scene::clearScreen() { system("clear"); }
+void Scene::printOnScreen(const char *content) {
+  printw("%s", content);
+  refresh();
+}
+
+void Scene::clearScreen() { clear(); }
+
+void Scene::handleInput() {
+  char c = getch();
+
+  switch (c) {
+  case 'q':
+    _running = false;
+    break;
+  case 'r':
+    _filter.reverse();
+    break;
+  }
+}

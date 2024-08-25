@@ -6,13 +6,15 @@
 #include <string>
 #include <vector>
 
+Filter::Filter() {}
+
 Filter::Filter(Config *conf) {
   _conf = conf;
-  if (_conf->filterConfig.reversed) {
-    reverseChars();
-  }
-
   _charMap = _conf->filterConfig.charMap;
+
+  if (_conf->filterConfig.reversed) {
+    reverseCharMap();
+  }
 }
 
 std::string Filter::filterFrame(cv::Mat &frame) {
@@ -25,7 +27,11 @@ std::string Filter::filterFrame(cv::Mat &frame) {
   return _outputBuffer;
 }
 
-void Filter::reverseChars() { std::reverse(_charMap.begin(), _charMap.end()); }
+void Filter::reverse() { reverseCharMap(); }
+
+void Filter::reverseCharMap() {
+  std::reverse(_charMap.begin(), _charMap.end());
+}
 
 cv::Mat Filter::prepareFrame(cv::Mat &frame, Size &size) {
   cv::Mat resized;
@@ -72,7 +78,6 @@ std::string Filter::submatToAsciiGray(cv::Mat frame) {
       uint8_t code = frame.at<uint8_t>(row, col) / div;
       result += _charMap.at(code);
     }
-    result += "\n";
   }
 
   return result;

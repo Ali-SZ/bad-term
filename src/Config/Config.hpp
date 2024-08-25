@@ -7,6 +7,7 @@
 class Config {
 public:
   Config();
+  void parseArgs(int argc, char *argv[]);
   Size findScreenSize();
 
   FilterConfig filterConfig;
