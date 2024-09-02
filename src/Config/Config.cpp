@@ -3,13 +3,17 @@
 #include <argparse/argparse.hpp>
 #include <cstdlib>
 #include <exception>
+#include <filesystem>
 #include <iostream>
 #include <pwd.h>
 #include <sys/ioctl.h>
 #include <thread>
 #include <unistd.h>
 
-Config::Config() { systemConfig.core = findCoreNum(); }
+Config::Config() {
+  systemConfig.core = findCoreNum();
+  generalConfig.videoLocation = findExecDir() + "/assets/bad_apple.mp4";
+}
 
 void Config::parseArgs(int argc, char *argv[]) {
   argparse::ArgumentParser program("bad-term");
@@ -43,8 +47,12 @@ std::string Config::findHomeDir() {
   return dir;
 }
 
-std::string Config::findConfigDir() {
-  return findHomeDir() + "/.config/bad-term";
+std::string Config::findExecDir() {
+  char path[FILENAME_MAX];
+  ssize_t count = readlink("/proc/self/exe", path, FILENAME_MAX);
+  return std::filesystem::path(std::string(path, (count > 0) ? count : 0))
+      .parent_path()
+      .string();
 }
 
 uint8_t Config::findCoreNum() { return std::thread::hardware_concurrency(); }

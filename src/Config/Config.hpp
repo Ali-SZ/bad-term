@@ -10,6 +10,7 @@ public:
   void parseArgs(int argc, char *argv[]);
   Size findScreenSize();
 
+  GeneralConfig generalConfig;
   FilterConfig filterConfig;
   SystemConfig systemConfig;
 
@@ -19,5 +20,5 @@ private:
 
   uint8_t findCoreNum();
   std::string findHomeDir();
-  std::string findConfigDir();
+  std::string findExecDir();
 };

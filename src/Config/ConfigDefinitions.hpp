@@ -2,10 +2,15 @@
 
 #include <cstdint>
 #include <vector>
+#include <string>
 
 struct Size {
   uint16_t Width;
   uint16_t Height;
+};
+
+struct GeneralConfig {
+    std::string videoLocation;
 };
 
 struct SystemConfig {
