@@ -1,10 +1,9 @@
+#include <opencv2/opencv.hpp>
+
 #include "Scene.hpp"
 #include "filter.hpp"
 
-#include <opencv2/opencv.hpp>
-
 #include <chrono>
-#include <ncurses.h>
 #include <thread>
 
 Scene::Scene(Config &conf) {
@@ -53,16 +52,22 @@ void Scene::openAltScreen() {
   noecho();
   nodelay(stdscr, TRUE);
   keypad(stdscr, true);
+
+  Size size = _config.findScreenSize();
+  _buffer = newwin(size.Height, size.Width, 0, 0);
 }
 
-void Scene::closeAltScreen() { endwin(); }
+void Scene::closeAltScreen() {
+  delwin(_buffer);
+  endwin();
+}
 
 void Scene::printOnScreen(const char *content) {
-  printw("%s", content);
-  refresh();
+  mvwprintw(_buffer, 0, 0, "%s", content);
+  wrefresh(_buffer);
 }
 
-void Scene::clearScreen() { clear(); }
+void Scene::clearScreen() { werase(_buffer); }
 
 void Scene::handleInput() {
   char c = getch();
