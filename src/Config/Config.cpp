@@ -1,10 +1,8 @@
 #include "Config.hpp"
+#include "ArgParser.hpp"
 
-#include <argparse/argparse.hpp>
 #include <cstdlib>
-#include <exception>
 #include <filesystem>
-#include <iostream>
 #include <pwd.h>
 #include <sys/ioctl.h>
 #include <thread>
@@ -16,21 +14,12 @@ Config::Config() {
 }
 
 void Config::parseArgs(int argc, char *argv[]) {
-  argparse::ArgumentParser program("bad-term");
-
-  program.add_argument("-r", "--reverse")
-      .help("reverses the ascii range, can be used during runtime")
-      .flag();
-
-  try {
-    program.parse_args(argc, argv);
-  } catch (const std::exception &err) {
-    std::cerr << err.what() << std::endl;
-    std::cerr << program;
+  ArgParser parser;
+  if (!parser.parse(argc, argv)) {
     std::exit(1);
   }
 
-  filterConfig.reversed = (program["--reverse"] == true);
+  filterConfig.reversed = parser.reverse();
 }
 
 Size Config::findScreenSize() {

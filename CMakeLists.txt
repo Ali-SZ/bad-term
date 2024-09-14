@@ -13,10 +13,5 @@ file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE
-    ${OpenCV_INCLUDE_DIRS}
-)
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    ${OpenCV_LIBS}
-    ncurses
-)
+target_include_directories(${PROJECT_NAME} PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${OpenCV_LIBS} ncurses)

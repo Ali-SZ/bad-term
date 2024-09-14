@@ -7,4 +7,6 @@ int main(int argc, char *argv[]) {
 
   Scene scene(config);
   scene.start();
+
+  return 0;
 }
