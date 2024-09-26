@@ -29,7 +29,8 @@ void ArgParser::showHelp() {
   std::cout << "Usage: bad-term [arg [...]].\n"
             << "\nArguments:\n"
             << "  --help               -h        - Show this message and exit\n"
-            << "  --reverse            -r        - Reverse the ASCII array\n"
+            << "  --reverse            -r        - Reverse the character map\n"
             << "\nRuntime keys:\n"
-            << "  r                              - Reverse the ASCII array\n";
+            << "  r                              - Reverse the character map\n"
+            << "  q                              - Quit\n";
 }
