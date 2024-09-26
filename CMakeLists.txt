@@ -26,7 +26,8 @@ install(FILES ${VIDEO_FILE} DESTINATION ${CMAKE_INSTALL_LIBDIR}/bad-term)
 
 set(LAUNCHER_SCRIPT "${CMAKE_BINARY_DIR}/launcher/bad-term")
 file(WRITE ${LAUNCHER_SCRIPT}
-     "#!/bin/sh\n" "${CMAKE_INSTALL_FULL_LIBDIR}/bad-term/bad-term\n")
+     "#!/bin/sh\n"
+     "exec ${CMAKE_INSTALL_FULL_LIBDIR}/bad-term/bad-term \"$@\"\n")
 
 file(
   COPY ${LAUNCHER_SCRIPT}

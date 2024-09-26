@@ -30,6 +30,6 @@ void ArgParser::showHelp() {
             << "\nArguments:\n"
             << "  --help               -h        - Show this message and exit\n"
             << "  --reverse            -r        - Reverse the ASCII array\n"
-            << "\nRuntume keys:\n"
+            << "\nRuntime keys:\n"
             << "  r                              - Reverse the ASCII array\n";
 }
