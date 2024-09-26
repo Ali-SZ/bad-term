@@ -1,5 +1,8 @@
 # bad-term
 Simple app to display Bad Apple on terminal as ASCII characters.
+
+![preview](https://github.com/user-attachments/assets/88127d47-bc8a-4004-abef-705b48a7e022)
+
 # Installation
 Currently project only can be installed from the source.
 ## Build from source
