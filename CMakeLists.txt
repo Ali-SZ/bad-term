@@ -9,7 +9,7 @@ find_package(OpenCV REQUIRED)
 project(${PROJECT_NAME})
 
 file(GLOB_RECURSE SRC_FILES "src/*.cpp")
-file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY assets/bad_apple.mp4 DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 

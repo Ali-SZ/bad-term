@@ -10,7 +10,7 @@
 
 Config::Config() {
   systemConfig.core = findCoreNum();
-  generalConfig.videoLocation = findExecDir() + "/assets/bad_apple.mp4";
+  generalConfig.videoLocation = findExecDir() + "/bad_apple.mp4";
 }
 
 void Config::parseArgs(int argc, char *argv[]) {
