@@ -17,7 +17,8 @@ add_executable(bad-term ${SOURCES})
 
 target_include_directories(bad-term PRIVATE ${OpenCV_INCLUDE_DIRS}
                                             ${CURSES_INCLUDE_DIR})
-target_link_libraries(bad-term PRIVATE ${OpenCV_LIBS} ${CURSES_LIBRARIES})
+target_link_libraries(bad-term PRIVATE ${OpenCV_LIBS} ${CURSES_LIBRARIES}
+                                       pthread)
 
 include(GNUInstallDirs)
 
