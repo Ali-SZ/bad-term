@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cstdint>
-#include <vector>
 #include <string>
+#include <vector>
 
 struct Size {
   uint16_t Width;
@@ -10,7 +10,8 @@ struct Size {
 };
 
 struct GeneralConfig {
-    std::string videoLocation;
+  std::string videoLocation;
+  bool loop = false;
 };
 
 struct SystemConfig {

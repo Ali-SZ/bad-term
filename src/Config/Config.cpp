@@ -20,6 +20,7 @@ void Config::parseArgs(int argc, char *argv[]) {
   }
 
   filterConfig.reversed = parser.reverse();
+  generalConfig.loop = parser.loop();
 }
 
 Size Config::findScreenSize() {

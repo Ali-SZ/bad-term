@@ -4,6 +4,7 @@
 #include "filter.hpp"
 
 #include <chrono>
+#include <opencv2/videoio.hpp>
 #include <thread>
 
 Scene::Scene(Config &conf) {
@@ -30,6 +31,10 @@ void Scene::start() {
 
     cv::Mat frame;
     if (!cap.read(frame)) {
+      if (_config.generalConfig.loop) {
+        cap.set(cv::CAP_PROP_POS_FRAMES, 0);
+        continue;
+      }
       break;
     }
     clearScreen();
