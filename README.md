@@ -39,3 +39,8 @@ sudo make install
 
 # License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+# Contact
+Ali Samadzadeh - [@ali_sz_dev](https://twitter.com/ali_sz_dev) - ali_sz_dev@proton.me
+<br/>
+Project Link: [bad-term](https://github.com/Ali-SZ/bad-term)
